@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.TvTestViewsCompose" parent="@style/Theme.Leanback" />
+</resources>

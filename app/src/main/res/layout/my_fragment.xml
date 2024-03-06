@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/red"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/topBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/rightBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bottomBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/leftBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/topBtn" />
+
+        <LinearLayout
+            android:id="@+id/myComposeViewContainer"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/bottomBtn"
+            app:layout_constraintEnd_toStartOf="@+id/rightBtn"
+            app:layout_constraintStart_toEndOf="@+id/leftBtn"
+            app:layout_constraintTop_toBottomOf="@+id/topBtn">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/myFragmentContainer"
+                android:name="com.example.tvtestviewscompose.ComposeViewFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
