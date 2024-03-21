@@ -1,6 +1,10 @@
 package com.example.tvtestviewscompose
 
+import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.compose.foundation.background
 import androidx.compose.foundation.focusGroup
 import androidx.compose.foundation.layout.Arrangement
@@ -10,32 +14,55 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusProperties
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.KeyEventType
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.nativeKeyCode
-import androidx.compose.ui.input.key.onKeyEvent
-import androidx.compose.ui.input.key.onPreviewKeyEvent
-import androidx.compose.ui.input.key.type
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.Fragment
 import androidx.tv.material3.Button
 import androidx.tv.material3.ExperimentalTvMaterial3Api
-import androidx.tv.material3.Surface
 import androidx.tv.material3.Text
+import com.example.tvtestviewscompose.databinding.ComposeInViewFragmentBinding
+
+class ComposeInViewFragment : Fragment() {
+    private lateinit var binding: ComposeInViewFragmentBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = ComposeInViewFragmentBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+}
+
+class ComposeInflationFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return ComposeView(requireContext()).apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                ComposeInViewApp()
+            }
+        }
+    }
+}
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
-fun App() {
+private fun ComposeInViewApp() {
     val hasFocus = remember { mutableStateOf(false) }
 
     Box(
@@ -51,6 +78,9 @@ fun App() {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Button(onClick = {}, modifier = constructFocusLoggingModifier("Button 1")) {
+                +"Button 0"
+            }
+            Button(onClick = {}, modifier = constructFocusLoggingModifier("Button 1")) {
                 +"Button 1"
             }
             Button(onClick = {}, modifier = constructFocusLoggingModifier("Button 2")) {
@@ -63,7 +93,7 @@ fun App() {
 const val TAG = "Pikachu"
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun constructFocusLoggingModifier(text: String): Modifier {
+private fun constructFocusLoggingModifier(text: String): Modifier {
     return Modifier
         .focusProperties {
             enter = {
@@ -80,6 +110,6 @@ fun constructFocusLoggingModifier(text: String): Modifier {
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
-operator fun String.unaryPlus() {
+private operator fun String.unaryPlus() {
     Text(text = this)
 }

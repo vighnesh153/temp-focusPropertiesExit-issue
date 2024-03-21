@@ -51,13 +51,10 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-//    val composeBom = platform("androidx.compose:compose-bom:2024.02.01")
-//    implementation(composeBom)
-
-//    implementation("androidx.compose.foundation:foundation")
-    implementation("androidx.compose.foundation:foundation:1.7.0-alpha03")
-//    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui:1.7.0-alpha03")
+    implementation("androidx.compose.foundation:foundation:1.7.0-alpha04")
+    implementation("androidx.compose.ui:ui:1.7.0-alpha04")
 
     implementation("androidx.tv:tv-material:1.0.0-alpha10")
+
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
 }

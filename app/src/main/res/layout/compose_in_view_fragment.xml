@@ -28,12 +28,23 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/bottomBtn"
+            android:id="@+id/bottomBtn1"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/bottom"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/bottomBtn2" />
+
+        <Button
+            android:id="@+id/bottomBtn2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bottomBtn1"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -50,14 +61,14 @@
             android:layout_width="400dp"
             android:layout_height="200dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/bottomBtn"
+            app:layout_constraintBottom_toTopOf="@+id/bottomBtn1"
             app:layout_constraintEnd_toStartOf="@+id/rightBtn"
             app:layout_constraintStart_toEndOf="@+id/leftBtn"
             app:layout_constraintTop_toBottomOf="@+id/topBtn">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/myFragmentContainer"
-                android:name="com.example.tvtestviewscompose.ComposeViewFragment"
+                android:name="com.example.tvtestviewscompose.ComposeInflationFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
