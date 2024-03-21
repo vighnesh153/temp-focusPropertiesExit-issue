@@ -49,17 +49,6 @@ class ComposeOnlyFragment : Fragment() {
     }
 }
 
-val commonColumnModifier = Modifier.fillMaxSize()
-val commonRowModifier = Modifier.fillMaxWidth()
-val commonItemModifier = Modifier
-    .width(164.dp)
-    .aspectRatio(16f / 9)
-
-val columnPaddingValues = PaddingValues(vertical = 20.dp)
-val rowPaddingValues = PaddingValues(horizontal = 20.dp)
-
-val arrangement = Arrangement.spacedBy(20.dp)
-
 
 @OptIn(ExperimentalTvMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
@@ -76,10 +65,7 @@ private fun ComposeOnlyApp() {
                     val focusRequester = remember { FocusRequester() }
 
                     TvLazyRow(
-                        modifier = commonRowModifier.then(Modifier
-//                            .focusRequester(focusRequester)
-                            .focusRestorer { focusRequester }
-                        ),
+                        modifier = commonRowModifier.then(Modifier.focusRestorer { focusRequester }),
                         contentPadding = rowPaddingValues,
                         horizontalArrangement = arrangement,
                     ) {
@@ -111,3 +97,14 @@ private fun ComposeOnlyApp() {
         }
     }
 }
+
+val commonColumnModifier = Modifier.fillMaxSize()
+val commonRowModifier = Modifier.fillMaxWidth()
+val commonItemModifier = Modifier
+    .width(164.dp)
+    .aspectRatio(16f / 9)
+
+val columnPaddingValues = PaddingValues(vertical = 20.dp)
+val rowPaddingValues = PaddingValues(horizontal = 20.dp)
+
+val arrangement = Arrangement.spacedBy(20.dp)
